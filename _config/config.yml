@@ -1,0 +1,7 @@
+---
+Name: privacycenter
+After: 'framework/*','cms/*'
+---
+ContentController:
+  extensions:
+    - PrivacyCenterExtension

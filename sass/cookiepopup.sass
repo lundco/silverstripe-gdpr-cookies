@@ -1,0 +1,57 @@
+.cookiePopup
+	right: 0
+	background: #F1F1F1
+	min-height: 50px
+	z-index: 50
+	max-width: 350px
+	position: fixed
+	bottom: 15px
+	left: 15px
+	padding: 0
+	background: rgba(24,21,18,.9)
+	&::before
+		content: ''
+		position: absolute
+		top: 100px
+		left: -15px
+		display: block
+		width: 0
+		height: 0
+		border-style: solid
+		border-width: 12.5px 15px 12.5px 0
+		border-color: transparent rgba(24,21,18,.9) transparent transparent
+
+	.notice
+		display: block
+		position: relative
+		padding: 15px
+		.the-cookie
+			display: inline-block
+			width: 100%
+			margin: 0 10px 0 0
+			opacity: 1
+			svg
+				width: 30px
+				height: 30px
+				path
+					fill: #BF1B30
+		p
+			display: inline-block
+			position: relative
+			top: 3px
+			margin: 0
+			margin-bottom: 15px
+			padding-top: .05rem
+			font-size: .6125rem
+			font-weight: 300
+			color: rgba(235,230,215,.7)
+			line-height: 1.1125rem
+		.button
+			background: #6cc04a
+			color: #fff
+			padding: 8px 8px
+			min-width: 130px
+		.openPrivacy
+			font-size: 9px
+			color: #fff
+			margin-left: 10px
