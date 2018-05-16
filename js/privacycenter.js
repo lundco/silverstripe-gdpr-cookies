@@ -30,10 +30,12 @@ function switchCookie(label,cookie){
 	var checkStatus = document.getElementById(label.htmlFor).checked; //Gets the inverted value
 	if(checkStatus){
 		setCookie(cookie, false, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-		label.innerHTML = 'Inactive';
+		var labelVal = label.getAttribute('data-inactive');
+		label.innerHTML = labelVal;
 	}else{
 		setCookie(cookie, true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-		label.innerHTML = 'Active';
+		var labelVal = label.getAttribute('data-active');
+		label.innerHTML = labelVal;
 	}
 }
 
@@ -70,15 +72,18 @@ function showPrivacyCenter() {
 
 	if (performanceState==='false') {
 		document.getElementById('chkPerformance').checked = false;
-		document.getElementById('chkPerformanceLabel').innerHTML = 'Inactive';
+		var labelVal = document.getElementById('chkPerformanceLabel').getAttribute('data-inactive');
+		document.getElementById('chkPerformanceLabel').innerHTML = labelVal;
 	}
 	if (functionalState==='false') {
 		document.getElementById('chkFunctional').checked = false;
-		document.getElementById('chkFunctionalLabel').innerHTML = 'Inactive';
+		var labelVal = document.getElementById('chkFunctionalLabel').getAttribute('data-inactive');
+		document.getElementById('chkFunctionalLabel').innerHTML = labelVal;
 	}
 	if (targetingState==='false') {
 		document.getElementById('chkTargeting').checked = false;
-		document.getElementById('chkTargetingLabel').innerHTML = 'Inactive';
+		var labelVal = document.getElementById('chkTargetingLabel').getAttribute('data-inactive');
+		document.getElementById('chkTargetingLabel').innerHTML = labelVal;
 	}
 }
 

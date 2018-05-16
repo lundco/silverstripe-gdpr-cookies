@@ -4,6 +4,6 @@
 		<a class="tiny button acceptAllCookies" href="javascript:allowAllCookies()"><i class="fa fa-checkmark"></i>
 			Accepter alle
 		</a>
-		<a href="javascript:showPrivacyCenter()" class="openPrivacy">Cookie settings</a>
+		<a href="javascript:showPrivacyCenter()" class="openPrivacy"><%t PrivacyCenter.CookieSettings 'Cookie settings' %></a>
 	</div>
 </div>
