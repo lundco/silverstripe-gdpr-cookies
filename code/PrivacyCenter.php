@@ -8,35 +8,48 @@ class PrivacyCenterExtension extends DataExtension
      */
     public function onAfterInit()
     {
-            Requirements::javascript('privacycenter/js/min/main.js');
-            Requirements::css('privacycenter/css/main.css');
+        Requirements::javascript('privacycenter/js/min/main.js');
+        Requirements::css('privacycenter/css/main.css');
 
-            // Always include GTM. Scripts and events are fired based on cookie settings.
-            //$this->includeGTM();
+        // Always include GTM. Scripts and events are fired based on cookie settings.
+        //$this->includeGTM();
     }
 
     public function PrivacyCenter()
     {
         $config = Config::inst();
 
+        $strictlyConfig = $config->get('PrivacyCenter', 'StrictlyCookies');
         $strictlyCookies = array();
-        foreach ($config->get('PrivacyCenter', 'StrictlyCookies') as $item) {
-            array_push($strictlyCookies, ArrayData::create(['Text' => $item]));
+
+        if($strictlyConfig){
+            foreach ($strictlyConfig as $item) {
+                array_push($strictlyCookies, ArrayData::create(['Text' => $item]));
+            }
         }
 
+        $performanceConfig = $config->get('PrivacyCenter', 'PerformanceCookies');
         $performanceCookies = array();
-        foreach ($config->get('PrivacyCenter', 'PerformanceCookies') as $item) {
-            array_push($performanceCookies, ArrayData::create(['Text' => $item]));
+        if($performanceConfig){
+            foreach ($performanceConfig as $item) {
+                array_push($performanceCookies, ArrayData::create(['Text' => $item]));
+            }
         }
 
+        $functionalConfig = $config->get('PrivacyCenter', 'FunctionalCookies');
         $functionalCookies = array();
-        foreach ($config->get('PrivacyCenter', 'FunctionalCookies') as $item) {
-            array_push($functionalCookies, ArrayData::create(['Text' => $item]));
+        if($functionalConfig){
+            foreach ($functionalConfig as $item) {
+                array_push($functionalCookies, ArrayData::create(['Text' => $item]));
+            }
         }
 
+        $targetingConfig = $config->get('PrivacyCenter', 'TargetingCookies');
         $targetingCookies = array();
-        foreach ($config->get('PrivacyCenter', 'TargetingCookies') as $item) {
-            array_push($targetingCookies, ArrayData::create(['Text' => $item]));
+        if($targetingConfig){
+            foreach ($targetingConfig as $item) {
+                array_push($targetingCookies, ArrayData::create(['Text' => $item]));
+            }
         }
 
         $GoogleTagID = $config->get('PrivacyCenter', 'TagID');
