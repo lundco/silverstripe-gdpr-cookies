@@ -3,7 +3,7 @@
   "description": "Control which cookies/services gets loaded when user enters website, to make it GDPR compliant",
   "type": "silverstripe-module",
   "keywords": ["silverstripe", "gdpr", "cookies", "compliant"],
-  "license": "GNU GPLv3",
+  "license": "MIT",
   "authors": [{
 	"name": "Carsten Meldgaard",
 	"role": "Developer"
