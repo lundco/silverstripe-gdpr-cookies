@@ -35,8 +35,8 @@
 
 			<div id="necessary" class="tabItem">
 				<div class="title"><%t PrivacyCenter.Strictly 'Strictly Necessary Cookies' %></div>
-				<div class="privacy-status">
-					<div class="optanon-status-always-active optanon-status-on">
+				<div class="privacy-status status-always-active">
+					<div class="">
 						<p><%t PrivacyCenter.AlwaysActive 'Always Active' %></p>
 					</div>
 				</div>
@@ -100,6 +100,7 @@
 
 			<div id="targeting" class="tabItem">
 				<div class="title"><%t PrivacyCenter.Targeting 'Targeting Cookies'%></div>
+				<div class="title"><%t PrivacyCenter.Targeting 'Targeting Cookies'%></div>
 				<div class="privacy-status">
 					<form>
 						<fieldset>
@@ -124,7 +125,7 @@
 		</div>
 	</div>
 	<div class="privacy-bottom">
-		<div class="copy"><a href="https://www.lund-co.dk" target="_blank">Made by Lund&co</a></div>
+		<div class="copy"><a class="lundcoCopy" href="https://www.lund-co.dk/" target="_blank">GDPR by <span>Lund&amp;Co</span></a></div>
 		<a href="javascript:saveSettings();" id="saveSettings" class="saveSettings"><%t PrivacyCenter.Save 'Save settings'%></a>
 	</div>
 </div>
