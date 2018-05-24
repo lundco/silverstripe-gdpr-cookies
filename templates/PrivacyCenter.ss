@@ -100,7 +100,6 @@
 
 			<div id="targeting" class="tabItem">
 				<div class="title"><%t PrivacyCenter.Targeting 'Targeting Cookies'%></div>
-				<div class="title"><%t PrivacyCenter.Targeting 'Targeting Cookies'%></div>
 				<div class="privacy-status">
 					<form>
 						<fieldset>
