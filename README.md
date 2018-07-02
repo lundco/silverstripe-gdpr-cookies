@@ -25,20 +25,24 @@ The cookies are divided into 4 different types
  - Technical (Like Drift)
  - Targeting (Like AdWords, Facebook pixel etc.)
 
-So when done your config.yml should have something like this:
+So when done your config.yml should have something like this, where Cookiename is the name of the cookie, like Google Analytics:
 ```
 PrivacyCenter:
   TagID:
     - 'GTM-XXXXXXX'
   StrictlyCookies:
-    - 'Cookiename'
+    - 'Session cookies'
   PerformanceCookies:
-    - 'Cookiename'
+    - 'Google Analytics'
   TechnicalCookies:
-    - 'Cookiename'
+    - 'Interkom'
   TargetingCookies:
-    - 'Cookiename'
+    - 'Facebook Pixel'
+    - 'Google AdWords'
 ```
+
+### Setting up Google Tag Manager
+COMMING
 
 ## Translations
 The plugin will be delivered with english as base language and a danish language file. If you create additional language files please feel free to share them with us. We will be happy to include them in the repository.

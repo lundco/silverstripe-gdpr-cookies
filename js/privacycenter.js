@@ -17,6 +17,7 @@ function Tabs() {
 	};
 
 	var change = function(e) {
+		e.preventDefault();
 		clear();
 		e.target.classList.add('menu-item-selected');
 		var id = e.currentTarget.getAttribute('data-tab');
@@ -65,26 +66,6 @@ function getCookie(cname) {
 function showPrivacyCenter() {
 	document.getElementById('privacy-center').style.display = 'block';
 	document.getElementById('privacy-bg').style.display = 'block';
-
-	var performanceState = getCookie('cookiePerformanceState');
-	var functionalState = getCookie('cookieFunctionalState');
-	var targetingState = getCookie('cookieTargetingState');
-
-	if (performanceState==='false') {
-		document.getElementById('chkPerformance').checked = false;
-		var labelVal = document.getElementById('chkPerformanceLabel').getAttribute('data-inactive');
-		document.getElementById('chkPerformanceLabel').innerHTML = labelVal;
-	}
-	if (functionalState==='false') {
-		document.getElementById('chkFunctional').checked = false;
-		var labelVal = document.getElementById('chkFunctionalLabel').getAttribute('data-inactive');
-		document.getElementById('chkFunctionalLabel').innerHTML = labelVal;
-	}
-	if (targetingState==='false') {
-		document.getElementById('chkTargeting').checked = false;
-		var labelVal = document.getElementById('chkTargetingLabel').getAttribute('data-inactive');
-		document.getElementById('chkTargetingLabel').innerHTML = labelVal;
-	}
 }
 
 function checkStatus() {
@@ -107,7 +88,9 @@ function allowAllCookies(){
 }
 
 function saveSettings(){
-	closeCookieAlert();
+	if(document.getElementById('cookieMessage')){
+		closeCookieAlert();
+	}
 	closePrivacyCenter();
 	if (!getCookie('cookieFirstVisit')) {
 		loadScript();
@@ -126,7 +109,6 @@ function closePrivacyCenter(){
 
 function loadScript()  {
 	var googleTagID = getCookie('GTMID');
-
 	var gtm_tag = document.createElement('script');
 	gtm_tag.type = 'text/javascript';
 	gtm_tag.text = '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\''+googleTagID+'\');';
