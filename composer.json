@@ -5,13 +5,10 @@
   "keywords": ["silverstripe", "gdpr", "cookies", "compliant"],
   "license": "MIT",
   "authors": [{
-	"name": "Carsten Meldgaard",
+	"name": "Lundco",
 	"role": "Developer"
   }],
   "require": {
-	"silverstripe/cms": "^3.1"
-  },
-  "extra": {
-	"installer-name": "privacycenter"
+	"silverstripe/cms": "4.*"
   }
 }
