@@ -10,5 +10,12 @@
   }],
   "require": {
 	"silverstripe/cms": "4.*"
+  },
+  "extra": {
+      "expose": [
+          "css",
+          "js",
+          "img"
+      ]
   }
 }
