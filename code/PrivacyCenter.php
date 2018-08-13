@@ -1,5 +1,14 @@
 <?php
 
+namespace Lundco\SilverstripeGDPRCookies;
+
+use SilverStripe\Control\Cookie;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\ORM\ArrayList;
+use SilverStripe\ORM\DataExtension;
+use SilverStripe\View\ArrayData;
+use SilverStripe\View\Requirements;
+
 class PrivacyCenterExtension extends DataExtension
 {
 
@@ -8,18 +17,21 @@ class PrivacyCenterExtension extends DataExtension
      */
     public function onAfterInit()
     {
-        Requirements::javascript('privacycenter/js/min/main.js');
-        Requirements::css('privacycenter/css/main.css');
+        Requirements::javascript('lundco/silverstripe-gdpr-cookies:js/min/main.js');
+        Requirements::css('lundco/silverstripe-gdpr-cookies:css/main.css');
 
         // Always include GTM. Scripts and events are fired based on cookie settings.
         //$this->includeGTM();
     }
 
+    /**
+     * @return string | Silverstripe rendered template
+     */
     public function PrivacyCenter()
     {
         $config = Config::inst();
 
-        $strictlyConfig = $config->get('PrivacyCenter', 'StrictlyCookies');
+        $strictlyConfig = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'StrictlyCookies');
         $strictlyCookies = array();
 
         if($strictlyConfig){
@@ -28,7 +40,7 @@ class PrivacyCenterExtension extends DataExtension
             }
         }
 
-        $performanceConfig = $config->get('PrivacyCenter', 'PerformanceCookies');
+        $performanceConfig = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'PerformanceCookies');
         $performanceCookies = array();
         if($performanceConfig){
             foreach ($performanceConfig as $item) {
@@ -36,7 +48,7 @@ class PrivacyCenterExtension extends DataExtension
             }
         }
 
-        $functionalConfig = $config->get('PrivacyCenter', 'FunctionalCookies');
+        $functionalConfig = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'FunctionalCookies');
         $functionalCookies = array();
         if($functionalConfig){
             foreach ($functionalConfig as $item) {
@@ -44,7 +56,7 @@ class PrivacyCenterExtension extends DataExtension
             }
         }
 
-        $targetingConfig = $config->get('PrivacyCenter', 'TargetingCookies');
+        $targetingConfig = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'TargetingCookies');
         $targetingCookies = array();
         if($targetingConfig){
             foreach ($targetingConfig as $item) {
@@ -52,7 +64,7 @@ class PrivacyCenterExtension extends DataExtension
             }
         }
 
-        $GoogleTagID = $config->get('PrivacyCenter', 'TagID');
+        $GoogleTagID = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'TagID');
 
         return $this->owner->customise(array(
             'StrictlyCookies' => ArrayList::create($strictlyCookies),
@@ -60,21 +72,24 @@ class PrivacyCenterExtension extends DataExtension
             'FunctionalCookies' => ArrayList::create($functionalCookies),
             'TargetingCookies' => ArrayList::create($targetingCookies),
             'TagID' => $GoogleTagID[0]
-        ))->renderWith('PrivacyCenter');
+        ))->renderWith('Lundco\SilverstripeGDPRCookies\PrivacyCenter');
     }
 
+    /**
+     * @return string | Silverstripe rendered template
+     */
     public function CookiePopup(){
         if(!$this->accepted()){
             $privacysnippet = new ArrayData([]);
             $page = $this->owner->customise(array('CookiePopup' => $privacysnippet));
-            return $page->renderWith('CookiePopup');
+            return $page->renderWith('Lundco\SilverstripeGDPRCookies\CookiePopup');
         }
     }
 
     protected function includeGTM()
     {
         $config = Config::inst();
-        $GoogleTagID = $config->get('PrivacyCenter', 'TagID');
+        $GoogleTagID = $config->get('Lundco\SilverstripeGDPRCookies\PrivacyCenter', 'TagID');
 
         // Inject GTM script
         Requirements::insertHeadTags("<!-- Google Tag Manager -->
