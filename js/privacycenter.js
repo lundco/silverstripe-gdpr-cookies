@@ -30,11 +30,11 @@ function Tabs() {
 function switchCookie(label,cookie){
 	var checkStatus = document.getElementById(label.htmlFor).checked; //Gets the inverted value
 	if(checkStatus){
-		setCookie(cookie, false, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
+		setCookie(cookie, false, 365);
 		var labelVal = label.getAttribute('data-inactive');
 		label.innerHTML = labelVal;
 	}else{
-		setCookie(cookie, true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
+		setCookie(cookie, true, 365);
 		var labelVal = label.getAttribute('data-active');
 		label.innerHTML = labelVal;
 	}
@@ -70,9 +70,9 @@ function showPrivacyCenter() {
 
 function checkStatus() {
 	if(!getCookie('cookie_decided')){
-		setCookie('cookiePerformanceState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-		setCookie('cookieFunctionalState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-		setCookie('cookieTargetingState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
+		setCookie('cookiePerformanceState', true, 365);
+		setCookie('cookieFunctionalState', true, 365);
+		setCookie('cookieTargetingState', true, 365);
 		loadScript();
 	}else(
 		loadScript()
@@ -81,9 +81,9 @@ function checkStatus() {
 
 function allowAllCookies(){
 	closeCookieAlert();
-	setCookie('cookiePerformanceState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-	setCookie('cookieFunctionalState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
-	setCookie('cookieTargetingState', true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
+	setCookie('cookiePerformanceState', true, 365);
+	setCookie('cookieFunctionalState', true, 365);
+	setCookie('cookieTargetingState', true, 365);
 	loadScript();
 }
 
@@ -98,7 +98,7 @@ function saveSettings(){
 }
 
 function closeCookieAlert() {
-	setCookie('cookie_decided', 1, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)));
+	setCookie('cookie_decided', 1, 365);
 	document.getElementById('cookieMessage').style.display = 'none';
 }
 

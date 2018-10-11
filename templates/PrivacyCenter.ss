@@ -132,7 +132,7 @@
 <script>
 	Tabs();
 	if(!getCookie('GTMID')){
-		setCookie('GTMID', '$TagID', new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)))
+		setCookie('GTMID', '$TagID', 365)
 	}
 
 	if(getCookie('cookieFirstVisit')){
@@ -140,6 +140,6 @@
 	}
 
 	if(!getCookie('cookieFirstVisit')){
-		setCookie('cookieFirstVisit',true, new Date(new Date().getTime() + (1000 * 60 * 60 * 24 * 364)))
+		setCookie('cookieFirstVisit',true, 365)
 	}
 </script>
