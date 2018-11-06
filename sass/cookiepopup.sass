@@ -1,74 +1,201 @@
-.cookiePopup
-	font-family: Arial
-	right: 0
-	background: #F1F1F1
-	min-height: 50px
-	z-index: 50
-	max-width: 350px
+.gdpr-widget
 	position: fixed
-	bottom: 15px
-	left: 15px
-	padding: 0
-	background: rgba(24,21,18,.9)
-	&::before
-		content: ''
+	bottom: 0px
+	left: 0px
+	font-family: 'Muli', sans-serif
+	z-index: 2000
+	line-height: 14px
+	&__widget-button
 		position: absolute
-		top: 100px
-		left: -15px
-		display: block
-		width: 0
-		height: 0
-		border-style: solid
-		border-width: 12.5px 15px 12.5px 0
-		border-color: transparent rgba(24,21,18,.9) transparent transparent
-
-	.notice
-		display: block
-		position: relative
-		padding: 15px
-		.the-cookie
-			display: inline-block
-			width: 100%
-			margin: 0 10px 0 0
-			opacity: 1
-			svg
-				width: 30px
-				height: 30px
-				path
-					fill: #BF1B30
-		p
-			display: inline-block
-			position: relative
-			top: 3px
-			margin: 0
-			margin-bottom: 15px
-			padding-top: .05rem
-			font-size: .6125rem
-			font-weight: 300
-			color: rgba(235,230,215,.7)
-			line-height: 1.1125rem
-		.button
-			background: #6cc04a
-			color: #fff
-			padding: 8px 8px
-			min-width: 130px
-			text-transform: capitalize
-			text-align: center
-			letter-spacing: 1px
-			border-radius: 3px
-			transition: all .2s
+		left: 25px
+		bottom: 25px
+		width: 38px
+		height: 38px
+		background-color: #2483e9
+		background-image: url(../img/cookie.svg)
+		background-size: contain
+		background-position: center
+		border-radius: 3px
+		box-shadow: 1px 1px 3px rgba(0,0,0,.2)
+		&:hover
 			cursor: pointer
+
+	&__popup
+		display: none
+		position: absolute
+		left: 25px
+		bottom: 92px
+		padding: 16px
+		font-size: 13px
+		width: 304px
+		z-index: 100
+		color: #7a7a7a
+		background: #fff
+		box-sizing: border-box
+		border-radius: 3px
+		box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
+		&-welcome
+			width: 100%
+		&-categories
+			margin-top: 16px
+		&-footer
+			margin-top: 24px
+			display: flex
+			justify-content: space-between
+			overflow: hidden
+			&-links
+				line-height: 34px
+				font-size: 11px
+				span
+					transition: all ease .2s
+					&:hover
+						cursor: pointer
+						color: #2483e9
+			&-round-button button
+				width: 100%
+				outline: none
+				cursor: pointer
+				font-size: 13px
+				display: block
+				color: #fff
+				background-color: #2483e9
+				padding: 0 24px
+				border: 1px solid #2483e9
+				border-radius: 15.5px
+				line-height: 32px
+				transition: color .4s,background-color .7s
+				white-space: nowrap
+				overflow: hidden
+				text-overflow: ellipsis
+		&-categories-item
+			display: flex
+			justify-content: space-between
+			margin-bottom: 14px
+			&-name
+				display: flex
+				justify-content: center
+				flex-direction: column
+				max-width: calc(100% - 72px)
+			&-count
+				color: silver
+				font-size: 11px
+
+			.onoffswitch
+				position: relative
+				width: 32px
+				-webkit-user-select: none
+				&-checkbox
+					display: none
+				&-label
+					display: block
+					overflow: hidden
+					cursor: pointer
+					height: 14px
+					padding: 0
+					line-height: 20px
+					border: 0px solid #FFFFFF
+					border-radius: 31px
+					background-color: #9E9E9E
+					&:before
+						content: ""
+						display: block
+						width: 20px
+						height: 20px
+						margin: -5.5px
+						margin-right: -14px
+						background: #FFFFFF
+						position: absolute
+						top: 1px
+						bottom: 0
+						right: 31px
+						border-radius: 31px
+						transition: all ease .2s
+						box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
+				&-checkbox
+					&:checked
+						+ .onoffswitch-label
+							background-color: #83B7F2
+							.onoffswitch-inner
+								margin-left: 0
+							&:before
+								right: 10px
+								background-color: #2483E9
+					&--disabled
+						&:checked
+							+ .onoffswitch-label
+								background: #d3d4d4
+								&:before
+									background: #a7aeb5
+
+
+	&__infobox
+		position: fixed
+		display: none
+		z-index: 2000
+		width: 100%
+		max-width: 380px
+		top: 0
+		bottom: 0
+		left: 0
+		background: #fff
+		box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
+		&-header
 			font-size: 13px
-			line-height: 1
-			font-weight: 500
-			display: inline-block
-			border: none
-			&:before, &:after
-				display: none
-		.openPrivacy
-			font-size: 9px
-			color: #fff
-			margin-left: 10px
-			text-decoration: none
-			&:before, &:after
-				display: none
+			background-color: #2483e9
+			padding: 24px
+			width: 100%
+			box-sizing: border-box
+			overflow: hidden
+			position: relative
+			color: #eee
+			text-transform: uppercase
+			font-weight: bold
+			&-close
+				position: absolute
+				top: 10px
+				right: 15px
+				font-weight: bold
+				font-size: 30px
+				&:hover
+					cursor: pointer
+
+		&-subheader
+			font-size: 13px
+			padding: 24px
+			width: 100%
+			box-sizing: border-box
+			overflow: hidden
+			position: relative
+			box-shadow: 0 4px 8px -4px rgba(0,0,0,.12)
+
+		&-content
+			font-size: 13px
+			padding: 24px 24px 24px 0
+			width: 100%
+			box-sizing: border-box
+			overflow: hidden
+			position: relative
+			a
+				line-height: 42px
+				padding-left: 24px
+				box-sizing: border-box
+				display: block
+				font-size: 14px
+				width: 100%
+				margin-bottom: 4px
+				color: #404040
+				text-overflow: ellipsis
+				white-space: nowrap
+				overflow: hidden
+				text-decoration: none
+				border-left: 3px solid #fff
+				transition: all ease .2s
+				&:hover
+					color: #111
+					border-left: 3px solid #2483e9
+			&-title
+				margin: 0 0 16px
+				text-transform: uppercase
+				font-size: 16px
+				font-weight: bold
+				padding-left: 24px
