@@ -1,11 +1,11 @@
 da:
   PrivacyCenter:
-    CookieMessage: 'Ved at fortsætte med at bruge websitet eller ved at klikke på "Accepter alle cookies" accepterer du opbevaring af cookies fra første og tredjepart på din enhed for at forbedre navigationen på webstedet, analysere brug af webstedet og hjælpe med vores marketingindsats.'
+    CookieMessage: 'Dette websted bruger cookies. Nogle af dem er essentielle, mens andre hjælper os med at forbedre din oplevelse.'
     YourPrivacy: 'Dit privatliv'
-    Strictly: 'Nødvendige cookies'
-    Performance: 'Ydelses cookies'
-    Functional: 'Funktions cookies'
-    Targeting: 'Målretning cookies'
+    Essential: 'Essentielle'
+    Performance: 'Ydelses'
+    Functional: 'Funktionelle'
+    Targeting: 'Målretning'
     Save: 'Gem indstillinger'
     Title: 'Privatlivs indstillinger'
     CookieSettings: 'Cookie indstillinger'

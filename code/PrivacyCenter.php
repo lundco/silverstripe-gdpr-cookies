@@ -3,16 +3,13 @@
 class PrivacyCenterExtension extends DataExtension
 {
 
-    /**
-     * On After init, based on config, include CookiePolicy items.
-     */
     public function onAfterInit()
     {
         Requirements::javascript('privacycenter/js/min/main.js');
         Requirements::css('privacycenter/css/main.css');
 
         // Always include GTM. Scripts and events are fired based on cookie settings.
-        //$this->includeGTM();
+        $this->includeGTM();
     }
 
     public function PrivacyCenter()
@@ -64,11 +61,19 @@ class PrivacyCenterExtension extends DataExtension
     }
 
     public function CookiePopup(){
-        if(!$this->accepted()){
-            $privacysnippet = new ArrayData([]);
-            $page = $this->owner->customise(array('CookiePopup' => $privacysnippet));
-            return $page->renderWith('CookiePopup');
-        }
+		//Set current policie versione as session
+		$policies = json_encode(Versioned::get_by_stage('Policy', 'Live')->map('ID','Version')->toArray());
+		echo '<pre>';
+		print_r($policies);
+		echo '</pre>';die;
+		Cookie::set('GDPRPolicyVersions',$policies,1,null,null,false,false);
+
+    	//Remember to include services used
+		$page = $this->owner->customise([
+			'Policies' => Policy::get()
+		]);
+
+		return $page->renderWith('CookiePopup');
     }
 
     protected function includeGTM()

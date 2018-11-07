@@ -1,24 +1,24 @@
-function closeInfobox(){
+function closeInfobox() {
 	document.getElementById('gdpr-widget__infobox').style.display = 'none';
 }
 
-function showInfobox(){
+function showInfobox() {
 	document.getElementById('gdpr-widget__infobox').style.display = 'block';
 }
 
-function closePopup(){
+function closePopup() {
 	document.getElementById('gdpr-widget__popup').style.display = 'none';
 }
 
-function showPopup(){
+function showPopup() {
 
-	if(getCookie('GDPRToken')){
+	if (getCookie('GDPRToken')) {
 		console.log(getCookie('functionalCookies'));
 		document.getElementById('gdpr-performance').checked = (getCookie('performanceCookies') === 'true');
 		document.getElementById('gdpr-functional').checked = (getCookie('functionalCookies') === 'true');
 		document.getElementById('gdpr-targeting').checked = (getCookie('targetingCookies') === 'true');
 		console.log(getCookie('functionalCookies'));
-	}else{
+	} else {
 		document.getElementById('gdpr-performance').checked = true;
 		document.getElementById('gdpr-functional').checked = true;
 		document.getElementById('gdpr-targeting').checked = true;
@@ -28,38 +28,57 @@ function showPopup(){
 	document.getElementById('gdpr-widget__popup').style.display = 'block';
 }
 
-function savePreferences(){
+function closeNotice() {
+	document.getElementById('gdpr-widget__popup-notice').style.display = 'none';
+}
+
+function showNotice() {
+	document.getElementById('gdpr-widget__popup-notice').style.display = 'block';
+}
+
+function doVersionsMatch() {
+	if (decodeURIComponent(getCookie('GDPRPolicyVersions')) === decodeURIComponent(getCookie('GDPRAcceptedPolicyVersions'))) {
+		return true;
+	}
+
+	return false;
+}
+
+function savePreferences() {
 	//Save policy versions
+	currentPolicies = getCookie('GDPRPolicyVersions');
+	setCookie('GDPRAcceptedPolicyVersions',currentPolicies,365);
 
 	//Save/create TokenID
-	setCookie('GDPRToken',true,365);
+	setCookie('GDPRToken', true, 365);
 
 	//Save performance cookie settings
 	var checkStatus = document.getElementById('gdpr-performance').checked; //Gets the inverted value
-	if(checkStatus){
+	if (checkStatus) {
 		setCookie('performanceCookies', true, 365);
-	}else{
+	} else {
 		setCookie('performanceCookies', false, 365);
 	}
 
 	//Save functional cookie settings
 	var checkStatus = document.getElementById('gdpr-functional').checked; //Gets the inverted value
-	if(checkStatus){
+	if (checkStatus) {
 		setCookie('functionalCookies', true, 365);
-	}else{
+	} else {
 		setCookie('functionalCookies', false, 365);
 	}
 
 	//Save targeting cookie settings
 	var checkStatus = document.getElementById('gdpr-targeting').checked; //Gets the inverted value
-	if(checkStatus){
+	if (checkStatus) {
 		setCookie('targetingCookies', true, 365);
-	}else{
+	} else {
 		setCookie('targetingCookies', false, 365);
 	}
 
 	//Close popup
 	closePopup();
+	closeNotice();
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -72,22 +91,22 @@ function setCookie(cname, cvalue, exdays) {
 function getCookie(cname) {
 	var name = cname + "=";
 	var ca = document.cookie.split(';');
-	for(var i = 0; i < ca.length; i++) {
+	for (var i = 0; i < ca.length; i++) {
 		var c = ca[i];
-		while (c.charAt(0) == ' ') {
+		while (c.charAt(0) === ' ') {
 			c = c.substring(1);
 		}
-		if (c.indexOf(name) == 0) {
+		if (c.indexOf(name) === 0) {
 			return c.substring(name.length, c.length);
 		}
 	}
-	return false;
+	return null;
 }
 
-function loadScript()  {
+function loadScript() {
 	var googleTagID = getCookie('GTMID');
 	var gtm_tag = document.createElement('script');
 	gtm_tag.type = 'text/javascript';
-	gtm_tag.text = '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\''+googleTagID+'\');';
+	gtm_tag.text = '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\'' + googleTagID + '\');';
 	document.body.appendChild(gtm_tag);
 }

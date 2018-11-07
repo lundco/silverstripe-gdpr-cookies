@@ -5,3 +5,7 @@ After: 'framework/*','cms/*'
 ContentController:
   extensions:
     - PrivacyCenterExtension
+
+Policy:
+  extensions:
+    - Versioned

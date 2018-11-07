@@ -2,12 +2,12 @@
 	<div class="gdpr-widget__widget-button" onclick="showPopup()"></div>
 	<div class="gdpr-widget__popup" id="gdpr-widget__popup">
 		<span class="gdpr-widget__popup-welcome">
-			This site uses cookies. Some of them are essentials while other help us improve your experience.
+			<%t PrivacyCenter.CookieMessage 'This site uses cookies. Some of them are essentials while other help us improve your experience.' %>
 		</span>
 		<div class="gdpr-widget__popup-categories">
 			<div class="gdpr-widget__popup-categories-item">
 				<div class="gdpr-widget__popup-categories-item-name">
-					<strong>Essential</strong>
+					<strong><%t PrivacyCenter.Essential 'Essential' %></strong>
 					<div class="gdpr-widget__popup-categories-item-count">1 script</div>
 				</div>
 				<div class="gdpr-widget__popup-categories-item-toggle">
@@ -19,7 +19,7 @@
 			</div>
 			<div class="gdpr-widget__popup-categories-item">
 				<div class="gdpr-widget__popup-categories-item-name">
-					<strong>Performance</strong>
+					<strong><%t PrivacyCenter.Performance 'Performance' %></strong>
 					<div class="gdpr-widget__popup-categories-item-count">1 script</div>
 				</div>
 				<div class="gdpr-widget__popup-categories-item-toggle">
@@ -31,7 +31,7 @@
 			</div>
 			<div class="gdpr-widget__popup-categories-item">
 				<div class="gdpr-widget__popup-categories-item-name">
-					<strong>Functional</strong>
+					<strong><%t PrivacyCenter.Functional 'Functional' %></strong>
 					<div class="gdpr-widget__popup-categories-item-count">2 script</div>
 				</div>
 				<div class="gdpr-widget__popup-categories-item-toggle">
@@ -43,7 +43,7 @@
 			</div>
 			<div class="gdpr-widget__popup-categories-item">
 				<div class="gdpr-widget__popup-categories-item-name">
-					<strong>Targeting</strong>
+					<strong><%t PrivacyCenter.Targeting 'Targeting' %></strong>
 					<div class="gdpr-widget__popup-categories-item-count">2 script</div>
 				</div>
 				<div class="gdpr-widget__popup-categories-item-toggle">
@@ -59,7 +59,7 @@
 				<span onclick="showInfobox()">Policies & details</span>
 			</div>
 			<div class="gdpr-widget__popup-footer-round-button">
-				<button onclick="savePreferences()">Save preferences</button>
+				<button onclick="savePreferences()"><%t PrivacyCenter.Save 'Save preferences' %></button>
 			</div>
 		</div>
 	</div>
@@ -79,10 +79,23 @@
 				Menu
 			</div>
 			<a href="#cookies">Cookies</a>
-			<a href="#privacy-policy">Privacy policy</a>
-			<a href="#cookie-policy">Cookie policy</a>
-			<a href="#cookie-policy">Third-party processors</a>
+			<% loop $Policies %>
+				<a href="#privacy-policy">$Title</a>
+			<% end_loop %>
 			<a href="#cookie-policy">Forget me</a>
+		</div>
+	</div>
+	<div class="gdpr-widget__popup" id="gdpr-widget__popup-notice" style="display: none">
+		<div class="gdpr-widget__popup-welcome">
+			Our policies have changed since last time you visited us.
+		</div>
+		<div class="gdpr-widget__popup-footer">
+			<div class="gdpr-widget__popup-footer-links">
+				<span onclick="showInfobox()">Policies & details</span>
+			</div>
+			<div class="gdpr-widget__popup-footer-round-button">
+				<button onclick="savePreferences()">Accept policies</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -90,5 +103,9 @@
 <script>
 	if(!getCookie('GDPRToken')){
 		showPopup();
+	}
+
+	if(getCookie('GDPRToken') && !doVersionsMatch()){
+		showNotice();
 	}
 </script>
