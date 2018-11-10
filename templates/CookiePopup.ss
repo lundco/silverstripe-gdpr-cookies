@@ -1,3 +1,4 @@
+<% if $isNotGoogleBot %>
 <div class="gdpr-widget">
 	<div class="gdpr-widget__widget-button" onclick="showPopup()"></div>
 	<div class="gdpr-widget__popup" id="gdpr-widget__popup">
@@ -78,11 +79,27 @@
 			<div class="gdpr-widget__infobox-content-title">
 				Menu
 			</div>
-			<a href="#cookies">Cookies</a>
+			<a onclick="showCookies()">Cookies</a>
 			<% loop $Policies %>
-				<a href="#privacy-policy">$Title</a>
+				<a onclick="showPolicy('privacy')">$Title</a>
 			<% end_loop %>
 			<a href="#cookie-policy">Forget me</a>
+
+
+			<div class="gdpr-widget__infobox-content gdpr-widget__infobox-content--overlay gdpr-widget__infobox-content--hidden" id="gdpr-widget__infobox-content-cookies">
+				<div class="gdpr-widget__infobox-content-title">
+					Cookies
+				</div>
+				This site uses cookies. Some of them are essentials while other help us improve your experience.
+			</div>
+			<% loop $Policies %>
+			<div class="gdpr-widget__infobox-content gdpr-widget__infobox-content--overlay gdpr-widget__infobox-content--hidden" id="gdpr-widget__infobox-content-privacy">
+				<div class="gdpr-widget__infobox-content-title">
+					$Title
+				</div>
+				$PolicyVersions.Filter('Status','Published').Sort('VersionCount','DESC').First
+			</div>
+			<% end_loop %>
 		</div>
 	</div>
 	<div class="gdpr-widget__popup" id="gdpr-widget__popup-notice" style="display: none">
@@ -109,3 +126,4 @@
 		showNotice();
 	}
 </script>
+<% end_if %>

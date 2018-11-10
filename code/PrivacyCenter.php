@@ -62,19 +62,34 @@ class PrivacyCenterExtension extends DataExtension
 
     public function CookiePopup(){
 		//Set current policie versione as session
-		$policies = json_encode(Versioned::get_by_stage('Policy', 'Live')->map('ID','Version')->toArray());
-		echo '<pre>';
-		print_r($policies);
-		echo '</pre>';die;
-		Cookie::set('GDPRPolicyVersions',$policies,1,null,null,false,false);
+		$policies = Policy::get();
+		$activePolicies = [];
+		foreach ($policies as $policy){
+			$active = $policy->PolicyVersions()->filter('Status','Published')->sort('VersionCount','DESC')->first();
+			if($active){
+				$activePolicies[$policy->ID] = $active->ID;
+			}
+		}
+
+		$encoded = json_encode($activePolicies);
+
+		Cookie::set('GDPRPolicyVersions',$encoded,1,null,null,false,false);
 
     	//Remember to include services used
 		$page = $this->owner->customise([
-			'Policies' => Policy::get()
+			'Policies' => Policy::get()->filter('PolicyVersions.Status','Published'),
+			'isNotGoogleBot' => $this->isNotGoogleBot()
 		]);
 
 		return $page->renderWith('CookiePopup');
     }
+
+	public static function isNotGoogleBot()
+	{
+		$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+		if(strpos($ua,'googlebot') === false && strpos($ua,'mediapartners-google') === false)return true;
+		return false;
+	}
 
     protected function includeGTM()
     {

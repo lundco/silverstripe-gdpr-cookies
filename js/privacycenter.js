@@ -49,9 +49,6 @@ function savePreferences() {
 	currentPolicies = getCookie('GDPRPolicyVersions');
 	setCookie('GDPRAcceptedPolicyVersions',currentPolicies,365);
 
-	//Save/create TokenID
-	setCookie('GDPRToken', true, 365);
-
 	//Save performance cookie settings
 	var checkStatus = document.getElementById('gdpr-performance').checked; //Gets the inverted value
 	if (checkStatus) {
@@ -76,9 +73,29 @@ function savePreferences() {
 		setCookie('targetingCookies', false, 365);
 	}
 
+	if(getCookie('GDPRToken')){
+		//Update consent
+		sendData('update');
+	}else{
+		//Create consent
+		sendData('save');
+	}
+
 	//Close popup
 	closePopup();
 	closeNotice();
+}
+
+function sendData(url) {
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.onreadystatechange = function(){
+		if(xmlHttp.readyState == 4 && xmlHttp.status == 200)
+		{
+
+		}
+	};
+	xmlHttp.open("post", '/gdpr-xhr/'+url);
+	xmlHttp.send();
 }
 
 function setCookie(cname, cvalue, exdays) {
@@ -109,4 +126,20 @@ function loadScript() {
 	gtm_tag.type = 'text/javascript';
 	gtm_tag.text = '(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({\'gtm.start\':new Date().getTime(),event:\'gtm.js\'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!=\'dataLayer\'?\'&l=\'+l:\'\';j.async=true;j.src=\'https://www.googletagmanager.com/gtm.js?id=\'+i+dl;f.parentNode.insertBefore(j,f);})(window,document,\'script\',\'dataLayer\',\'' + googleTagID + '\');';
 	document.body.appendChild(gtm_tag);
+}
+
+function closeCookies() {
+	document.getElementById('gdpr-widget__infobox-content-cookies').style.display = 'none';
+}
+
+function showCookies() {
+	document.getElementById('gdpr-widget__infobox-content-cookies').style.display = 'block';
+}
+
+function showPolicy(policy) {
+	document.getElementById('gdpr-widget__infobox-content-'+policy).style.display = 'block';
+}
+
+function closePolicy(policy) {
+	document.getElementById('gdpr-widget__infobox-content-'+policy).style.display = 'none';
 }
