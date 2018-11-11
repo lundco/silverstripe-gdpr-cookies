@@ -1,5 +1,10 @@
 function closeInfobox() {
 	document.getElementById('gdpr-widget__infobox').style.display = 'none';
+	var overlay = document.getElementsByClassName('gdpr-overlay-open');
+	if(overlay[0]){
+		overlay[0].style.left = '-100%';
+		overlay[0].classList.remove("gdpr-overlay-open");
+	}
 }
 
 function showInfobox() {
@@ -12,16 +17,14 @@ function closePopup() {
 
 function showPopup() {
 
-	if (getCookie('GDPRToken')) {
-		console.log(getCookie('functionalCookies'));
+	if (getCookie('performanceCookies')) {
 		document.getElementById('gdpr-performance').checked = (getCookie('performanceCookies') === 'true');
 		document.getElementById('gdpr-functional').checked = (getCookie('functionalCookies') === 'true');
 		document.getElementById('gdpr-targeting').checked = (getCookie('targetingCookies') === 'true');
-		console.log(getCookie('functionalCookies'));
 	} else {
 		document.getElementById('gdpr-performance').checked = true;
 		document.getElementById('gdpr-functional').checked = true;
-		document.getElementById('gdpr-targeting').checked = true;
+		document.getElementById('gdpr-targeting').checked = true; 
 	}
 
 	//Display popup
@@ -129,17 +132,21 @@ function loadScript() {
 }
 
 function closeCookies() {
-	document.getElementById('gdpr-widget__infobox-content-cookies').style.display = 'none';
+	document.getElementById('gdpr-widget__infobox-content-cookies').style.left = '-100%';
+	document.getElementById('gdpr-widget__infobox-content-cookies').classList.remove("gdpr-overlay-open");
 }
 
 function showCookies() {
-	document.getElementById('gdpr-widget__infobox-content-cookies').style.display = 'block';
+	document.getElementById('gdpr-widget__infobox-content-cookies').style.left = '0';
+	document.getElementById('gdpr-widget__infobox-content-cookies').classList.add("gdpr-overlay-open");
 }
 
 function showPolicy(policy) {
-	document.getElementById('gdpr-widget__infobox-content-'+policy).style.display = 'block';
+	document.getElementById('gdpr-widget__infobox-content-'+policy).style.left = '0';
+	document.getElementById('gdpr-widget__infobox-content-'+policy).classList.add("gdpr-overlay-open");
 }
 
 function closePolicy(policy) {
-	document.getElementById('gdpr-widget__infobox-content-'+policy).style.display = 'none';
+	document.getElementById('gdpr-widget__infobox-content-'+policy).style.left = '-100%';
+	document.getElementById('gdpr-widget__infobox-content-'+policy).classList.remove("gdpr-overlay-open");
 }

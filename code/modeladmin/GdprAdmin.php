@@ -3,8 +3,7 @@
 class GdprAdmin extends ModelAdmin{
 	private static $managed_models = array(
 		'Policy',
-		'Consent',
-		'ForgetRequest'
+		'Consent'
 	);
 
 	private static $url_segment = 'gdpradmin';

@@ -26,7 +26,7 @@ class Consent_Controller extends Controller
 
 	public function save()
 	{
-		$hash = sha1(microtime());
+		$hash = Cookie::get('GDPRToken');
 
 		$consent = Consent::create();
 		$consent->PerformanceCookies = Cookie::get('performanceCookies');

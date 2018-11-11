@@ -39,7 +39,7 @@ class PolicyVersion extends dataobject
 
 		]);
 
-		if ($this->Status === 'Draft') {
+		if ($this->Status === 'Draft' || !$this->ID) {
 			$fields->addFieldsToTab('Root.Main', [
 				TextField::create('Title', 'Internal name'),
 				DropdownField::create('Status', 'Status', singleton('PolicyVersion')->dbObject('Status')->enumValues()),
@@ -67,7 +67,7 @@ class PolicyVersion extends dataobject
 		parent::onBeforeWrite();
 
 		if ($this->Status === 'Published' && !$this->VersionCount) {
-			$this->VersionCount = self::get()->max('VersionCount') + 1;
+			$this->VersionCount = self::get()->filter('PolicyID',$this->PolicyID)->max('VersionCount') + 1;
 			$this->Published = Date('d-m-Y');
 		}
 	}

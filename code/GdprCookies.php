@@ -1,6 +1,6 @@
 <?php
 
-class PrivacyCenterExtension extends DataExtension
+class GdprCookies extends DataExtension
 {
 
     public function onAfterInit()
@@ -72,13 +72,56 @@ class PrivacyCenterExtension extends DataExtension
 		}
 
 		$encoded = json_encode($activePolicies);
-
 		Cookie::set('GDPRPolicyVersions',$encoded,1,null,null,false,false);
+
+		if(!Cookie::get('GDPRToken')){
+			$hash = sha1(microtime());
+			Cookie::set('GDPRToken', $hash, 365,null,null,false,false);
+		}
+
+		$config = Config::inst();
+
+		$strictlyConfig = $config->get('PrivacyCenter', 'StrictlyCookies');
+		$strictlyCookies = array();
+
+		if($strictlyConfig){
+			foreach ($strictlyConfig as $item) {
+				array_push($strictlyCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$performanceConfig = $config->get('PrivacyCenter', 'PerformanceCookies');
+		$performanceCookies = array();
+		if($performanceConfig){
+			foreach ($performanceConfig as $item) {
+				array_push($performanceCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$functionalConfig = $config->get('PrivacyCenter', 'FunctionalCookies');
+		$functionalCookies = array();
+		if($functionalConfig){
+			foreach ($functionalConfig as $item) {
+				array_push($functionalCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$targetingConfig = $config->get('PrivacyCenter', 'TargetingCookies');
+		$targetingCookies = array();
+		if($targetingConfig){
+			foreach ($targetingConfig as $item) {
+				array_push($targetingCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
 
     	//Remember to include services used
 		$page = $this->owner->customise([
 			'Policies' => Policy::get()->filter('PolicyVersions.Status','Published'),
-			'isNotGoogleBot' => $this->isNotGoogleBot()
+			'isNotGoogleBot' => $this->isNotGoogleBot(),
+			'EssentialCookies' => ArrayList::create($strictlyCookies),
+			'PerformanceCookies' => ArrayList::create($performanceCookies),
+			'FunctionalCookies' => ArrayList::create($functionalCookies),
+			'TargetingCookies' => ArrayList::create($targetingCookies)
 		]);
 
 		return $page->renderWith('CookiePopup');

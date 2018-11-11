@@ -54,4 +54,12 @@ class Policy extends dataobject
 	{
 		return count($this->PolicyVersions()->filter('Status', 'Published'));
 	}
+
+	public function Slug(){
+		return SiteTree::create()->generateURLSegment($this->Title);
+	}
+
+	public function PolicyContent(){
+		return $this->PolicyVersions()->filter('Status', 'Published')->sort('Published', 'DESC')->first()->Content;
+	}
 }

@@ -159,7 +159,7 @@
 			font-weight: bold
 			&-close
 				position: absolute
-				top: 10px
+				top: 22px
 				right: 15px
 				font-weight: bold
 				font-size: 30px
@@ -206,13 +206,58 @@
 				font-size: 16px
 				font-weight: bold
 				padding-left: 24px
+				span
+					display: block
+					margin-top: 5px
+					font-size: 11px
+					color: #a9a9a9
+			&-container
+				padding: 0 24px 24px 24px
+				height: calc(100vh - 135px)
+				overflow-y: scroll
+				p
+					margin: 0 0 15px
+				&::-webkit-scrollbar
+					width: 5px
+				&::-webkit-scrollbar-track
+					background: #f1f1f1
+				&::-webkit-scrollbar-thumb
+					background: #888
+				&::-webkit-scrollbar-thumb:hover
+					background: #555
+				&-cookies
+					&-title
+						margin-top: 20px
+						padding-top: 20px
+						border-top: 1px solid #efefef
+						font-weight: bold
+					&-description
+						margin-top: 10px
+					&-list
+						margin-top: 15px
+						&-cookies-used
+							font-weight: bold
+						&-cookie-item
+							margin: 5px 0 !important
 			&--overlay
 				position: absolute
-				top: 0
-				right: 0
+				top: 62px
+				right: 20px
 				bottom: 0
 				left: 0
+				width: 90%
 				background: #fff
-			
+				transition: all ease .2s
+				box-shadow: 2px 0 4px 1px rgba(0,0,0,.12)
+				padding-right: 0px
 			&--hidden
-				display: none
+				left: -100%
+
+			&-close
+				position: absolute
+				top: 21px
+				right: 15px
+				font-weight: bold
+				font-size: 30px
+				&:hover
+					cursor: pointer
