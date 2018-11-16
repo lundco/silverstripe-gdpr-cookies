@@ -1,0 +1,7 @@
+---
+Name: gdprroutes
+After: framework/routes#coreroutes
+---
+Director:
+  rules:
+    'gdpr-xhr//$Action': 'Consent_Controller'

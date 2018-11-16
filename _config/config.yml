@@ -1,7 +1,7 @@
 ---
-Name: privacycenter
+Name: gdprcookies
 After: 'framework/*','cms/*'
 ---
 ContentController:
   extensions:
-    - PrivacyCenterExtension
+    - GdprCookies

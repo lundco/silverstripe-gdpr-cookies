@@ -1,18 +1,15 @@
 <?php
 
-class PrivacyCenterExtension extends DataExtension
+class GdprCookies extends DataExtension
 {
 
-    /**
-     * On After init, based on config, include CookiePolicy items.
-     */
     public function onAfterInit()
     {
         Requirements::javascript('privacycenter/js/min/main.js');
         Requirements::css('privacycenter/css/main.css');
 
         // Always include GTM. Scripts and events are fired based on cookie settings.
-        //$this->includeGTM();
+        $this->includeGTM();
     }
 
     public function PrivacyCenter()
@@ -64,12 +61,78 @@ class PrivacyCenterExtension extends DataExtension
     }
 
     public function CookiePopup(){
-        if(!$this->accepted()){
-            $privacysnippet = new ArrayData([]);
-            $page = $this->owner->customise(array('CookiePopup' => $privacysnippet));
-            return $page->renderWith('CookiePopup');
-        }
+		//Set current policie versione as session
+		$policies = Policy::get();
+		$activePolicies = [];
+		foreach ($policies as $policy){
+			$active = $policy->PolicyVersions()->filter('Status','Published')->sort('VersionCount','DESC')->first();
+			if($active){
+				$activePolicies[$policy->ID] = $active->ID;
+			}
+		}
+
+		$encoded = json_encode($activePolicies);
+		Cookie::set('GDPRPolicyVersions',$encoded,1,null,null,false,false);
+
+		if(!Cookie::get('GDPRToken')){
+			$hash = sha1(microtime());
+			Cookie::set('GDPRToken', $hash, 365,null,null,false,false);
+		}
+
+		$config = Config::inst();
+
+		$strictlyConfig = $config->get('PrivacyCenter', 'StrictlyCookies');
+		$strictlyCookies = array();
+
+		if($strictlyConfig){
+			foreach ($strictlyConfig as $item) {
+				array_push($strictlyCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$performanceConfig = $config->get('PrivacyCenter', 'PerformanceCookies');
+		$performanceCookies = array();
+		if($performanceConfig){
+			foreach ($performanceConfig as $item) {
+				array_push($performanceCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$functionalConfig = $config->get('PrivacyCenter', 'FunctionalCookies');
+		$functionalCookies = array();
+		if($functionalConfig){
+			foreach ($functionalConfig as $item) {
+				array_push($functionalCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+		$targetingConfig = $config->get('PrivacyCenter', 'TargetingCookies');
+		$targetingCookies = array();
+		if($targetingConfig){
+			foreach ($targetingConfig as $item) {
+				array_push($targetingCookies, ArrayData::create(['Text' => $item]));
+			}
+		}
+
+    	//Remember to include services used
+		$page = $this->owner->customise([
+			'Policies' => Policy::get()->filter('PolicyVersions.Status','Published'),
+			'isNotGoogleBot' => $this->isNotGoogleBot(),
+			'EssentialCookies' => ArrayList::create($strictlyCookies),
+			'PerformanceCookies' => ArrayList::create($performanceCookies),
+			'FunctionalCookies' => ArrayList::create($functionalCookies),
+			'TargetingCookies' => ArrayList::create($targetingCookies)
+		]);
+
+		return $page->renderWith('CookiePopup');
     }
+
+	public static function isNotGoogleBot()
+	{
+		$ua = strtolower($_SERVER['HTTP_USER_AGENT']);
+		if(strpos($ua,'googlebot') === false && strpos($ua,'mediapartners-google') === false)return true;
+		return false;
+	}
 
     protected function includeGTM()
     {

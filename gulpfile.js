@@ -25,7 +25,7 @@ gulp.task('styles', function(){
 });
 
 gulp.task('scripts', function(){
-	return gulp.src(['./js/thirdparty/*.js', './js/privacycenter.js'])
+	return gulp.src(['./js/thirdparty/*.js', './js/gdpr.js'])
 		.pipe(sourcemaps.init())
 		.pipe(concat('main.js'))
 		.pipe(uglify())
