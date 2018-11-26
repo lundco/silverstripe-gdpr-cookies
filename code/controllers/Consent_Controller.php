@@ -3,64 +3,52 @@
 class Consent_Controller extends Controller
 {
 
-	private static $allowed_actions = array(
-		'update',
-		'save'
-	);
+    private static $allowed_actions = array(
+        'update',
+        'save'
+    );
 
-	public function update()
-	{
-		$consent = Consent::get()->filter('UID', Cookie::get('GDPRToken'))->first();
-		$consent->PerformanceCookies = Cookie::get('performanceCookies');
-		$consent->FunctionalCookies = Cookie::get('functionalCookies');
-		$consent->TargetingCookies = Cookie::get('targetingCookies');
-		$consent->Policies = Cookie::get('GDPRAcceptedPolicyVersions');
-		$consent->AnonIP = $this->getIP();
+    public function save()
+    {
+        $hash = Cookie::get('GDPRToken');
+        $consent = Consent::get()->filter('UID', $hash)->first();
 
-		Cookie::set('GDPRToken', $consent->UID, 365,null,null,false,false);
+        if(!$consent){
+            $consent = Consent::create();
+        }
 
-		$consent->write();
+        $consent->PerformanceCookies = Cookie::get('performanceCookies');
+        $consent->FunctionalCookies = Cookie::get('functionalCookies');
+        $consent->TargetingCookies = Cookie::get('targetingCookies');
+        $consent->Policies = Cookie::get('GDPRAcceptedPolicyVersions');
+        $consent->UID = $hash;
+        $consent->AnonIP = $this->getIP();
+        $consent->write();
 
-		return true;
-	}
+        Cookie::set('GDPRToken', $hash, 365,null,null,false,false);
 
-	public function save()
-	{
-		$hash = Cookie::get('GDPRToken');
+        return true;
+    }
 
-		$consent = Consent::create();
-		$consent->PerformanceCookies = Cookie::get('performanceCookies');
-		$consent->FunctionalCookies = Cookie::get('functionalCookies');
-		$consent->TargetingCookies = Cookie::get('targetingCookies');
-		$consent->Policies = Cookie::get('GDPRAcceptedPolicyVersions');
-		$consent->UID = $hash;
-		$consent->AnonIP = $this->getIP();
-		$consent->write();
+    public function getIP()
+    {
+        // Get real visitor IP behind CloudFlare network
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote = $_SERVER['REMOTE_ADDR'];
 
-		Cookie::set('GDPRToken', $hash, 365,null,null,false,false);
+        if (filter_var($client, FILTER_VALIDATE_IP)) {
+            $ip = $client;
+        }elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
+            $ip = $forward;
+        }else {
+            $ip = $remote;
+        }
 
-		return true;
-	}
-
-	public function getIP()
-	{
-		// Get real visitor IP behind CloudFlare network
-		if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-			$_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-			$_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-		}
-		$client = @$_SERVER['HTTP_CLIENT_IP'];
-		$forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-		$remote = $_SERVER['REMOTE_ADDR'];
-
-		if (filter_var($client, FILTER_VALIDATE_IP)) {
-			$ip = $client;
-		}elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
-			$ip = $forward;
-		}else {
-			$ip = $remote;
-		}
-
-		return substr($ip, 0, -3) . 'XXX';
-	}
+        return substr($ip, 0, -3) . 'XXX';
+    }
 }
