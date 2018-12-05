@@ -77,6 +77,9 @@ class GdprCookies extends DataExtension
 		if(!Cookie::get('GDPRToken')){
 			$hash = sha1(microtime());
 			Cookie::set('GDPRToken', $hash, 365,null,null,false,false);
+			Cookie::set('performanceCookies', 'pending', 365,null,null,false,false);
+			Cookie::set('functionalCookies', 'pending', 365,null,null,false,false);
+			Cookie::set('targetingCookies', 'pending', 365,null,null,false,false);
 		}
 
 		$config = Config::inst();
