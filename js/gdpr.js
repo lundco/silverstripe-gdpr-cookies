@@ -22,6 +22,11 @@ function showPopup() {
         document.getElementById('gdpr-functional').checked = (getCookie('functionalCookies') === 'true');
         document.getElementById('gdpr-targeting').checked = (getCookie('targetingCookies') === 'true');
     } else {
+        //Save targeting cookie settings
+        setCookie('performanceCookies', 'pending', 365);
+        setCookie('functionalCookies', 'pending', 365);
+        setCookie('targetingCookies', 'pending', 365);
+
         document.getElementById('gdpr-performance').checked = true;
         document.getElementById('gdpr-functional').checked = true;
         document.getElementById('gdpr-targeting').checked = true;
