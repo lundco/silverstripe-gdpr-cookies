@@ -17,7 +17,7 @@ function closePopup() {
 
 function showPopup() {
 
-    if (getCookie('performanceCookies')) {
+    if (getCookie('performanceCookies') !== 'pending') {
         document.getElementById('gdpr-performance').checked = (getCookie('performanceCookies') === 'true');
         document.getElementById('gdpr-functional').checked = (getCookie('functionalCookies') === 'true');
         document.getElementById('gdpr-targeting').checked = (getCookie('targetingCookies') === 'true');

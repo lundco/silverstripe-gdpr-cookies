@@ -178,7 +178,7 @@
 </div>
 
 <script>
-	if(!getCookie('performanceCookies')){
+	if(getCookie('performanceCookies') === 'pending'){
 		showPopup();
 	}
 
