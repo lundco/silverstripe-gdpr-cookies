@@ -1,7 +1,7 @@
 da:
   PrivacyCenter:
     CookieMessage: 'Dette websted bruger cookies. Nogle af dem er essentielle, mens andre hjælper os med at forbedre din oplevelse.'
-    Welcome: 'Her hos {PageTitle} tager vi dit privatliv alvorligt og bruger kun personlige data til at levere de produkter og tjenester, du har anmodet om fra os.'
+    Welcome: 'Vi tager dit privatliv alvorligt og bruger kun personlige data til at levere de produkter og tjenester, du har anmodet om fra os.'
     YourPrivacy: 'Dit privatliv'
     Essential: 'Essentielle'
     Performance: 'Ydelses'

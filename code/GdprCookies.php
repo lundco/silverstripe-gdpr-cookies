@@ -5,8 +5,8 @@ class GdprCookies extends DataExtension
 
     public function onAfterInit()
     {
-        Requirements::javascript('silverstripe-gdpr-cookies/js/min/main.js');
-        Requirements::css('silverstripe-gdpr-cookies/css/main.css');
+        Requirements::javascript('silverstripe-gdpr-cookies/js/min/main.js?v1');
+        Requirements::css('silverstripe-gdpr-cookies/css/main.css?v1');
 
         // Always include GTM. Scripts and events are fired based on cookie settings.
         $this->includeGTM();

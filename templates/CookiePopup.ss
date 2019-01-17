@@ -1,6 +1,5 @@
 <% if $isNotGoogleBot %>
 <div class="gdpr-widget">
-	<div class="gdpr-widget__widget-button" onclick="showPopup()"></div>
 	<div class="gdpr-widget__popup" id="gdpr-widget__popup">
 		<span class="gdpr-widget__popup-welcome">
 			<%t PrivacyCenter.CookieMessage 'This site uses cookies. Some of them are essentials while other help us improve your experience.' %>
