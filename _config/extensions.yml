@@ -1,0 +1,7 @@
+---
+Name: silverstripe-gdpr-cookies-extensions
+---
+
+SilverStripe\CMS\Controllers\ContentController:
+  extensions:
+    - Lundco\SilverStripe\GdprCookies\Extension\GdprCookies

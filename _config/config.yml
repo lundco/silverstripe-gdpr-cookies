@@ -1,9 +1,0 @@
----
-Name: privacycenter
----
-SilverStripe\CMS\Controllers\ContentController:
-  extensions:
-    - Lundco\SilverstripeGDPRCookies\PrivacyCenterExtension
-SilverStripe\SiteConfig\SiteConfig:
-  extensions:
-    - Lundco\SilverstripeGDPRCookies\SiteConfigExtension

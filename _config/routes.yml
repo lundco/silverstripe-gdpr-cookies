@@ -1,0 +1,7 @@
+---
+Name: silverstripe-gdpr-cookies-routes
+After: framework/routes#coreroutes
+---
+SilverStripe\Control\Director:
+  rules:
+    'gdpr-xhr//$Action': 'Lundco\SilverStripe\GdprCookies\Controllers\Consent_Controller'
