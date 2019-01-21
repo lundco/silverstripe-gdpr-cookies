@@ -58,14 +58,14 @@ class GdprCookies extends DataExtension
             }
         }
 
-        $GoogleTagID = $config->get('PrivacyCenter', 'TagID');
+        $googleTagID = $config->get('PrivacyCenter', 'TagID');
 
         return $this->owner->customise(array(
             'StrictlyCookies' => ArrayList::create($strictlyCookies),
             'PerformanceCookies' => ArrayList::create($performanceCookies),
             'FunctionalCookies' => ArrayList::create($functionalCookies),
             'TargetingCookies' => ArrayList::create($targetingCookies),
-            'TagID' => $GoogleTagID[0]
+            'TagID' => $googleTagID[0]
         ))->renderWith('PrivacyCenter');
     }
 
@@ -149,7 +149,7 @@ class GdprCookies extends DataExtension
     protected function includeGTM()
     {
         $config = Config::inst();
-        $GoogleTagID = $config->get('PrivacyCenter', 'TagID');
+        $googleTagID = $config->get('PrivacyCenter', 'TagID');
 
         // Inject GTM script
         Requirements::insertHeadTags("<!-- Google Tag Manager -->
@@ -157,7 +157,7 @@ class GdprCookies extends DataExtension
             new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','".$GoogleTagID[0]."');</script>
+            })(window,document,'script','dataLayer','".$googleTagID[0]."');</script>
             <!-- End Google Tag Manager -->
             ");
 
