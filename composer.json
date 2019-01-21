@@ -1,7 +1,7 @@
 {
   "name": "lundco/silverstripe-gdpr-cookies",
   "description": "Control which cookies/services gets loaded when user enters website, to make it GDPR compliant",
-  "type": "silverstripe/vendor-plugin",
+  "type": "silverstripe-vendormodule",
   "keywords": ["silverstripe", "gdpr", "cookies", "compliant"],
   "license": "MIT",
   "authors": [{
