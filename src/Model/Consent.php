@@ -1,6 +1,6 @@
 <?php
 
-namespace Lundco\SilverStrioe\GdprCookies\Model;
+namespace Lundco\SilverStripe\GdprCookies\Model;
 
 use Lundco\SilverStripe\GdprCookies\Model\Policy;
 use SilverStripe\ORM\DataObject;
@@ -25,8 +25,7 @@ class Consent extends Dataobject
         'AnonIP'             => 'IP',
         'PerformanceCookies' => 'Performance',
         'FunctionalCookies'  => 'Functional',
-        'TargetingCookies'   => 'Targeting',
-        'listPolicies'       => 'Accepted Policies'
+        'TargetingCookies'   => 'Targeting'
     );
 
     private static $defaults = [
@@ -61,21 +60,5 @@ class Consent extends Dataobject
         }
 
         return 'Disabled';
-    }
-
-    public function listPolicies()
-    {
-        $policies = json_decode($this->getField('Policies'));
-        $list = '';
-
-        if ($policies) {
-            foreach ($policies as $key => $policy) {
-                $data = Policy::get()->byID($key);
-                $version = $data->PolicyVersions()->filter('ID', $policy)->first();
-                $list .= $data->Title . ' - V.' . $version->VersionCount . ',';
-            }
-        }
-
-        return $list;
     }
 }

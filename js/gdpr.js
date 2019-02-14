@@ -13,6 +13,7 @@ function showInfobox() {
 
 function closePopup() {
     document.getElementById('gdpr-widget__popup').style.display = 'none';
+    document.getElementById('gdpr-widget__popup-bg').style.display = 'none';
 }
 
 function showPopup() {
@@ -34,6 +35,7 @@ function showPopup() {
 
     //Display popup
     document.getElementById('gdpr-widget__popup').style.display = 'block';
+    document.getElementById('gdpr-widget__popup-bg').style.display = 'block';
 }
 
 function closeNotice() {
@@ -42,14 +44,6 @@ function closeNotice() {
 
 function showNotice() {
     document.getElementById('gdpr-widget__popup-notice').style.display = 'block';
-}
-
-function doVersionsMatch() {
-    if (decodeURIComponent(getCookie('GDPRPolicyVersions')) === decodeURIComponent(getCookie('GDPRAcceptedPolicyVersions'))) {
-        return true;
-    }
-
-    return false;
 }
 
 function savePreferences() {

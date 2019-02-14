@@ -2,7 +2,7 @@
 
 namespace Lundco\SilverStripe\GdprCookies\Controllers;
 
-use Lundco\SilverStrioe\GdprCookies\Model\Consent;
+use Lundco\SilverStripe\GdprCookies\Model\Consent;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Cookie;
 
