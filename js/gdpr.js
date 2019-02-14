@@ -13,6 +13,7 @@ function showInfobox() {
 
 function closePopup() {
     document.getElementById('gdpr-widget__popup').style.display = 'none';
+    document.getElementById('gdpr-widget__popup-bg').style.display = 'none';
 }
 
 function showPopup() {
