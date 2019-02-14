@@ -20,7 +20,6 @@ class Consent_Controller extends Controller
         $consent->PerformanceCookies = Cookie::get('performanceCookies');
         $consent->FunctionalCookies = Cookie::get('functionalCookies');
         $consent->TargetingCookies = Cookie::get('targetingCookies');
-        $consent->Policies = Cookie::get('GDPRAcceptedPolicyVersions');
         $consent->UID = $hash;
         $consent->AnonIP = $this->getIP();
         $consent->write();

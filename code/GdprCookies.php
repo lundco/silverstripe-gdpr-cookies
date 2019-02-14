@@ -61,18 +61,10 @@ class GdprCookies extends DataExtension
     }
 
     public function CookiePopup(){
-		//Set current policie versione as session
-		$policies = Policy::get();
-		$activePolicies = [];
-		foreach ($policies as $policy){
-			$active = $policy->PolicyVersions()->filter('Status','Published')->sort('VersionCount','DESC')->first();
-			if($active){
-				$activePolicies[$policy->ID] = $active->ID;
-			}
-		}
 
-		$encoded = json_encode($activePolicies);
-		Cookie::set('GDPRPolicyVersions',$encoded,1,null,null,false,false);
+        //TODO - Fetch page selected in settings, and get last edited date
+		//$encoded = json_encode($activePolicies);
+		//Cookie::set('GDPRPolicyVersions',$encoded,1,null,null,false,false);
 
 		if(!Cookie::get('GDPRToken')){
 			$hash = sha1(microtime());
@@ -119,12 +111,12 @@ class GdprCookies extends DataExtension
 
     	//Remember to include services used
 		$page = $this->owner->customise([
-			'Policies' => Policy::get()->filter('PolicyVersions.Status','Published'),
 			'isNotGoogleBot' => $this->isNotGoogleBot(),
 			'EssentialCookies' => ArrayList::create($strictlyCookies),
 			'PerformanceCookies' => ArrayList::create($performanceCookies),
 			'FunctionalCookies' => ArrayList::create($functionalCookies),
-			'TargetingCookies' => ArrayList::create($targetingCookies)
+			'TargetingCookies' => ArrayList::create($targetingCookies),
+            'CookiesLink' => '<a href="'.SiteConfig::current_site_config()->PrivacyPage()->Link().'">'
 		]);
 
 		return $page->renderWith('CookiePopup');

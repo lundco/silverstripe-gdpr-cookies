@@ -5,3 +5,8 @@ After: 'framework/*','cms/*'
 ContentController:
   extensions:
     - GdprCookies
+
+#Extensions
+SiteConfig:
+  extensions:
+    - GdprSiteConfigExtension

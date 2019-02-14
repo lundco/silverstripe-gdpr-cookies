@@ -17,8 +17,7 @@ class Consent extends dataobject
 		'AnonIP'                => 'IP',
 		'getPerformanceCookies' => 'Performance',
 		'getFunctionalCookies'  => 'Functional',
-		'getTargetingCookies'   => 'Targeting',
-		'listPolicies'              => 'Policies'
+		'getTargetingCookies'   => 'Targeting'
 	);
 
 	private static $defaults = [
@@ -53,17 +52,5 @@ class Consent extends dataobject
 		}
 
 		return 'Disabled';
-	}
-
-	public function listPolicies(){
-		$policies = json_decode($this->getField('Policies'));
-		$list = "";
-		foreach ($policies as $key => $policy){
-			$data = Policy::get()->byID($key);
-			$version = $data->PolicyVersions()->filter('ID',$policy)->first();
-			$list .= $data->Title . ' - V.' .$version->VersionCount.',';
-		}
-
-		return $list;
 	}
 }
