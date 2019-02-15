@@ -1,6 +1,6 @@
 <?php
 
-class GdprSiteConfigExtension extends FluentExtension
+class GdprSiteConfigExtension extends DataExtension
 {
 
 	private static $has_one = array(
