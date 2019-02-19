@@ -9,7 +9,6 @@ use SilverStripe\ORM\DataExtension;
 use Lundco\SilverStripe\GdprCookies\Model\Consent;
 use SilverStripe\Forms\GridField\GridField;
 use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
-use Page;
 
 class SiteConfigExtension extends DataExtension
 {
@@ -20,7 +19,7 @@ class SiteConfigExtension extends DataExtension
     public function updateCMSFields(FieldList $fields)
     {
         $fields->addFieldsToTab('Root.GDPR', [
-            TreeDropdownField::create('PrivacyPageID', 'Privacy/Cookies info', 'SiteTree'),
+            TreeDropdownField::create('PrivacyPageID', 'Privacy/Cookies info', SiteTree::class),
         ]);
 
         $fields->addFieldsToTab('Root.GDPR', FieldList::create(array(
