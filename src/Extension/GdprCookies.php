@@ -1,11 +1,11 @@
 <?php
 namespace Lundco\SilverStripe\GdprCookies\Extension;
 
-use Lundco\SilverStripe\GdprCookies\Model\Policy;
 use SilverStripe\Control\Cookie;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\View\ArrayData;
 use SilverStripe\View\Requirements;
 
@@ -114,13 +114,20 @@ class GdprCookies extends DataExtension
 			}
 		}
 
+		$privacyLink = '';
+
+		if(SiteConfig::get()->first()->PrivacyPage){
+		    $privacyLink = SiteConfig::get()->first()->PrivacyPage->Link();
+        }
+
     	//Remember to include services used
 		$page = $this->owner->customise([
 			'isNotGoogleBot' => $this->isNotGoogleBot(),
 			'EssentialCookies' => ArrayList::create($strictlyCookies),
 			'PerformanceCookies' => ArrayList::create($performanceCookies),
 			'FunctionalCookies' => ArrayList::create($functionalCookies),
-			'TargetingCookies' => ArrayList::create($targetingCookies)
+			'TargetingCookies' => ArrayList::create($targetingCookies),
+            'CookiesLink' => $privacyLink
 		]);
 
 		return $page->renderWith('CookiePopup');

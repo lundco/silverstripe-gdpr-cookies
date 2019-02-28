@@ -1,6 +1,6 @@
 <?php
 
-namespace Lundco\SilverstripeGDPRCookies;
+namespace Lundco\Silverstripe\GDPRCookies\Extension;
 
 use SilverStripe\CMS\Model\SiteTree;
 use SilverStripe\Forms\FieldList;
@@ -13,7 +13,7 @@ use SilverStripe\Forms\GridField\GridFieldConfig_RelationEditor;
 class SiteConfigExtension extends DataExtension
 {
     private static $has_one = array(
-        'PrivacyPage' => Page::class,
+        'PrivacyPage' => \Page::class,
     );
 
     public function updateCMSFields(FieldList $fields)

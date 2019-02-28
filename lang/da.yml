@@ -1,6 +1,7 @@
 da:
   PrivacyCenter:
-    CookieMessage: 'Ved at fortsætte med at bruge denne hjemmeside accepterer du vores brug af cookies, der er designet til at lette din navigation gennem webstedet og generere besøgsstatistikker. Læs mere om cookies {linkStart}her{linkEnd} eller'
+    CookieMessage: 'Ved at fortsætte med at bruge denne hjemmeside accepterer du vores brug af cookies, der er designet til at lette din navigation gennem webstedet og generere besøgsstatistikker.'
+    CookieMessageReadMore: 'Læs mere om cookies her'
     YourPrivacy: 'Dit privatliv'
     Essential: 'Essentielle'
     Performance: 'Ydelses'
@@ -8,5 +9,5 @@ da:
     Targeting: 'Målretning'
     Save: 'Gem indstillinger'
     Accept: 'Accepter'
-    AdjustCookies: 'sæt præferencer'
+    AdjustCookies: 'Tilpas præferencer'
     OurCookiePolicy: 'Vores cookie politik'
