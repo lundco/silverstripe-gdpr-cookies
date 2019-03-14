@@ -2,15 +2,18 @@
 
 	&__notice
 		display: none
-		background: #f9f9f9
+		background: #fff
 		position: fixed
-		right: 0
-		bottom: 0
+		margin: 0 auto
 		left: 0
+		right: 0
+		bottom: 20px
 		width: 100%
+		max-width: 734px
+		border-radius: 50px
 		z-index: 50
-		padding: 25px 15px
-		box-shadow: 0 0 4px 0 rgba(0,0,0,.08), 0 2px 4px 0 rgba(0,0,0,.08)
+		padding: 17px 15px
+		box-shadow: 0 2px 6px 3px rgba(0,0,0,.1)
 		&-wrapper
 			max-width: 1200px
 			display: flex
@@ -24,48 +27,24 @@
 		&-content
 			color: #292929
 			display: flex
-			flex-direction: column
-			font-size: 15px
-			max-width: 750px
-			&-title
-				display: block
-				font-size: 24px
-				font-weight: bold
-
-		&-actions
-			margin-left: 30px
-			text-align: center
-			color: #292929
-			display: flex
 			flex-direction: row
-			justify-content: center
+			justify-content: space-between
 			align-items: center
-			&--roundButton
-				margin-left: 15px
+			font-size: 11px
+			max-width: 750px
+			width: 100%
+			.text
 				width: 100%
-				outline: none
-				cursor: pointer
-				font-size: 20px
-				display: block
-				color: #fff
-				background: #fcc900
-				padding: 0.1em 1.1em
-				border: 1px solid #fcc900
-				border-radius: 0.1em
-				line-height: 32px
-				transition: color .4s, background-color .7s
-				white-space: nowrap
-				text-overflow: ellipsis
+				.gdpr-show:hover
+					cursor: pointer
+				.gdpr-close
+					text-decoration: underline
+					&:hover
+						cursor: pointer
+			.fa
+				margin-left: 15px
+				font-size: 16px
 				&:hover
-					background: #fff
-					color: #1f1f1f
-			&--smallLink
-				font-size: 12px
-				background: transparent
-				color: #1f1f1f
-				&:hover
-					background: #fcc900
-					color: #fff
 					cursor: pointer
 
 	&__popup
