@@ -1,17 +1,59 @@
 .gdpr-widget
-	position: fixed
-	bottom: 0px
-	left: 0px
-	font-family: 'Muli', sans-serif
-	z-index: 2000
-	line-height: 14px
+
+	&__notice
+		display: none
+		background: #fff
+		position: fixed
+		margin: 0 auto
+		left: 0
+		right: 0
+		bottom: 20px
+		width: 100%
+		max-width: 734px
+		border-radius: 50px
+		z-index: 50
+		padding: 17px 15px
+		box-shadow: 0 2px 6px 3px rgba(0,0,0,.1)
+		&-wrapper
+			max-width: 1200px
+			display: flex
+			justify-content: space-between
+			margin: 0 auto
+			@media all and (max-width: 520px)
+				flex-direction: column
+				.gdpr-widget__notice-actions
+					margin-left: 0
+					margin-top: 20px
+		&-content
+			color: #292929
+			display: flex
+			flex-direction: row
+			justify-content: space-between
+			align-items: center
+			font-size: 11px
+			max-width: 750px
+			width: 100%
+			.text
+				width: 100%
+				.gdpr-show:hover
+					cursor: pointer
+				.gdpr-close
+					text-decoration: underline
+					&:hover
+						cursor: pointer
+			.fa
+				margin-left: 15px
+				font-size: 16px
+				&:hover
+					cursor: pointer
 
 	&__popup
 		display: none
-		position: absolute
-		left: 25px
-		bottom: 25px
-		padding: 16px
+		position: fixed
+		top: 50%
+		left: 50%
+		transform: translate(-50%,-50%)
+		padding: 35px
 		font-size: 13px
 		width: 304px
 		z-index: 100
@@ -20,15 +62,26 @@
 		box-sizing: border-box
 		border-radius: 3px
 		box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
+		&-bg
+			display: none
+			position: fixed
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
+			background: #0D0A0A
+			opacity: .75
+			z-index: 51
 		&-welcome
 			width: 100%
+			font-weight: bold
+			font-size: 22px
 		&-categories
 			margin-top: 16px
 		&-footer
 			margin-top: 24px
-			display: flex
-			justify-content: space-between
 			overflow: hidden
+			text-align: center
 			&-links
 				line-height: 34px
 				font-size: 11px
@@ -36,7 +89,7 @@
 					transition: all ease .2s
 					&:hover
 						cursor: pointer
-						color: #2483e9
+						color: #ffe479
 			&-round-button button
 				width: 100%
 				outline: none
@@ -44,10 +97,10 @@
 				font-size: 13px
 				display: block
 				color: #fff
-				background-color: #2483e9
-				padding: 0 24px
-				border: 1px solid #2483e9
-				border-radius: 15.5px
+				background: #fcc900
+				padding: 0.1em 1.1em
+				border: 1px solid #fcc900
+				border-radius: 0.1em
 				line-height: 32px
 				transition: color .4s,background-color .7s
 				white-space: nowrap
@@ -62,8 +115,10 @@
 				justify-content: center
 				flex-direction: column
 				max-width: calc(100% - 72px)
+				strong
+					font-size: 15px
 			&-count
-				color: silver
+				color: #989898
 				font-size: 11px
 
 			.onoffswitch
@@ -93,150 +148,21 @@
 						position: absolute
 						top: 1px
 						bottom: 0
-						right: 31px
 						border-radius: 31px
 						transition: all ease .2s
 						box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
 				&-checkbox
 					&:checked
 						+ .onoffswitch-label
-							background-color: #83B7F2
+							background-color: #ffe479
 							.onoffswitch-inner
 								margin-left: 0
 							&:before
 								right: 10px
-								background-color: #2483E9
+								background-color: #fcc900
 					&--disabled
 						&:checked
 							+ .onoffswitch-label
 								background: #d3d4d4
 								&:before
 									background: #a7aeb5
-
-
-	&__infobox
-		position: fixed
-		display: none
-		z-index: 2000
-		width: 100%
-		max-width: 380px
-		top: 0
-		bottom: 0
-		left: 0
-		background: #fff
-		box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)
-		&-header
-			font-size: 13px
-			background-color: #2483e9
-			padding: 24px
-			width: 100%
-			box-sizing: border-box
-			overflow: hidden
-			position: relative
-			color: #eee
-			text-transform: uppercase
-			font-weight: bold
-			&-close
-				position: absolute
-				top: 22px
-				right: 15px
-				font-weight: bold
-				font-size: 30px
-				&:hover
-					cursor: pointer
-
-		&-subheader
-			font-size: 13px
-			padding: 24px
-			width: 100%
-			box-sizing: border-box
-			overflow: hidden
-			position: relative
-			box-shadow: 0 4px 8px -4px rgba(0,0,0,.12)
-
-		&-content
-			font-size: 13px
-			padding: 24px 24px 24px 0
-			width: 100%
-			box-sizing: border-box
-			overflow: hidden
-			position: relative
-			a
-				line-height: 42px
-				padding-left: 24px
-				box-sizing: border-box
-				display: block
-				font-size: 14px
-				width: 100%
-				margin-bottom: 4px
-				color: #404040
-				text-overflow: ellipsis
-				white-space: nowrap
-				overflow: hidden
-				text-decoration: none
-				border-left: 3px solid #fff
-				transition: all ease .2s
-				&:hover
-					color: #111
-					border-left: 3px solid #2483e9
-			&-title
-				margin: 0 0 16px
-				text-transform: uppercase
-				font-size: 16px
-				font-weight: bold
-				padding-left: 24px
-				span
-					display: block
-					margin-top: 5px
-					font-size: 11px
-					color: #a9a9a9
-			&-container
-				padding: 0 24px 24px 24px
-				height: calc(100vh - 135px)
-				overflow-y: scroll
-				p
-					margin: 0 0 15px
-				&::-webkit-scrollbar
-					width: 5px
-				&::-webkit-scrollbar-track
-					background: #f1f1f1
-				&::-webkit-scrollbar-thumb
-					background: #888
-				&::-webkit-scrollbar-thumb:hover
-					background: #555
-				&-cookies
-					&-title
-						margin-top: 20px
-						padding-top: 20px
-						border-top: 1px solid #efefef
-						font-weight: bold
-					&-description
-						margin-top: 10px
-					&-list
-						margin-top: 15px
-						&-cookies-used
-							font-weight: bold
-						&-cookie-item
-							margin: 5px 0 !important
-			&--overlay
-				position: absolute
-				top: 62px
-				right: 20px
-				bottom: 0
-				left: 0
-				width: 90%
-				background: #fff
-				transition: all ease .2s
-				box-shadow: 2px 0 4px 1px rgba(0,0,0,.12)
-				padding-right: 0px
-			&--hidden
-				left: -100%
-
-			&-close
-				position: absolute
-				top: 21px
-				right: 15px
-				font-weight: bold
-				font-size: 30px
-				&:hover
-					cursor: pointer

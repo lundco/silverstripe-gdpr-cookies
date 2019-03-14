@@ -76,16 +76,12 @@
             </div>
         </div>
     </div>
+
     <div class="gdpr-widget__notice" id="gdpr-widget__popup-notice">
         <div class="gdpr-widget__notice-wrapper">
             <div class="gdpr-widget__notice-content">
-                <span class="gdpr-widget__notice-content-title"><%t PrivacyCenter.OurCookiePolicy 'Our Cookie Policy' %></span>
-                <p><%t PrivacyCenter.CookieMessage 'By continuing to browse this website you consent to our use of cookies designed to ease your
-                navigation through the site and generate site visit statistics. Read more about cookies {linkStart}here{linkEnd} or' linkStart=$CookiesLink linkEnd='</a>'%> <a href="#" onclick="showPopup()"><%t PrivacyCenter.AdjustCookies 'Adjust cookies' %></a>.</p>
-            </div>
-            <div class="gdpr-widget__notice-actions">
-                <button class="gdpr-widget__notice-actions--roundButton"
-                        onclick="savePreferences()"><%t PrivacyCenter.Accept 'Accept' %></button>
+                <div class="text"><%t PrivacyCenter.CookieMessage 'By using this website you accept the use of cookies. <span class="gdpr-show" onclick="showPopup()">Set preferences</span> or <span class="gdpr-close">close this message</span>' %> </div>
+                <i class="fa fa-times close"  onclick="savePreferences()"></i>
             </div>
         </div>
     </div>
