@@ -1,6 +1,6 @@
 da:
   PrivacyCenter:
-    CookieMessage: 'Ved at benytte dette website accepterer du brug af cookies. <span class="gdpr-show" onclick="showPopup()">Sæt preferencer</span> eller <span class="gdpr-close">luk beskeden</span>'
+    CookieMessage: 'Ved at benytte dette website accepterer du brug af cookies. <span class="gdpr-show" onclick="showPopup()">Sæt preferencer</span> eller <span class="gdpr-close" onclick="savePreferences()">luk beskeden</span>'
     YourPrivacy: 'Dit privatliv'
     Essential: 'Essentielle'
     Performance: 'Ydelses'

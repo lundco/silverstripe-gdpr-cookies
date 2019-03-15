@@ -1,6 +1,6 @@
 de:
   PrivacyCenter:
-    CookieMessage: 'Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu. <span class = "gdpr-show" onclick = "showPopup ()"> Voreinstellungen festlegen </ span> oder <span class = "gdpr-close"> diese Nachricht schließen </ span>'
+    CookieMessage: 'Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu. <span class = "gdpr-show" onclick = "showPopup ()"> Voreinstellungen festlegen </ span> oder <span class = "gdpr-close" onclick="savePreferences()"> diese Nachricht schließen </ span>'
     YourPrivacy: 'Ihre Privatsphäre'
     Essential: 'Essentiell'
     Performance: 'Leistungscookies'

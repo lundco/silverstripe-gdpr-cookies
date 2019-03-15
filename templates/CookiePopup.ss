@@ -80,7 +80,7 @@
     <div class="gdpr-widget__notice" id="gdpr-widget__popup-notice">
         <div class="gdpr-widget__notice-wrapper">
             <div class="gdpr-widget__notice-content">
-                <div class="text"><%t PrivacyCenter.CookieMessage 'By using this website you accept the use of cookies. <span class="gdpr-show" onclick="showPopup()">Set preferences</span> or <span class="gdpr-close">close this message</span>' %> </div>
+                <div class="text"><%t PrivacyCenter.CookieMessage 'By using this website you accept the use of cookies. <span class="gdpr-show" onclick="showPopup()">Set preferences</span> or <span class="gdpr-close" onclick="savePreferences()">close this message</span>' %> </div>
                 <i class="fa fa-times close"  onclick="savePreferences()"></i>
             </div>
         </div>
