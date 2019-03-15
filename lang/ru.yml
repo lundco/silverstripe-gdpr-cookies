@@ -1,6 +1,6 @@
 ru:
   PrivacyCenter:
-    CookieMessage: 'Используя этот сайт, вы соглашаетесь с использованием куки. <span class = "gdpr-show" onclick = "showPopup ()"> Установить настройки </ span> или <span class = "gdpr-close"> закрыть это сообщение </ span>'
+    CookieMessage: 'Используя этот сайт, вы соглашаетесь с использованием куки. <span class = "gdpr-show" onclick = "showPopup ()"> Установить настройки </ span> или <span class = "gdpr-close" onclick="savePreferences()"> закрыть это сообщение </ span>'
     YourPrivacy: 'Ваша конфиденциальность'
     Essential: 'существенный'
     Performance: 'Производительность'
