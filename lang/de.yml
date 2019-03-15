@@ -1,11 +1,11 @@
 de:
   PrivacyCenter:
-    CookieMessage: 'Durch die weitere Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu, die Ihre Navigation durch die Website erleichtern und Besucherstatistiken generieren. Weitere Informationen zu Cookies {linkStart} finden Sie hier {linkEnd} or'
+    CookieMessage: 'Durch die Nutzung dieser Website stimmen Sie der Verwendung von Cookies zu. <span class = "gdpr-show" onclick = "showPopup ()"> Voreinstellungen festlegen </ span> oder <span class = "gdpr-close"> diese Nachricht schließen </ span>'
     YourPrivacy: 'Ihre Privatsphäre'
     Essential: 'Essentiell'
     Performance: 'Leistungscookies'
     Functional: 'Funktionelle Cookies'
-    Targeting: 'Targeting-Cookies'
+    Targeting: 'Targeting-Cookies'x
     Save: 'Einstellungen speichern'
     Accept: 'Akzeptieren'
     AdjustCookies: 'Einstellungen'
