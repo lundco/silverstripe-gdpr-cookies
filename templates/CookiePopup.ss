@@ -6,7 +6,7 @@
         <div class="gdpr-widget__popup-categories">
             <div class="gdpr-widget__popup-categories-item">
                 <div class="gdpr-widget__popup-categories-item-name">
-                    <strong><%t PrivacyCenter.Essential 'Essential' %></strong>
+                    <strong><%t PrivacyCenter.Essential 'Essential cookeis' %></strong>
                     <div class="gdpr-widget__popup-categories-item-count">
 						<% loop $EssentialCookies %>
 							$Text,
@@ -23,7 +23,7 @@
             </div>
             <div class="gdpr-widget__popup-categories-item">
                 <div class="gdpr-widget__popup-categories-item-name">
-                    <strong><%t PrivacyCenter.Performance 'Performance' %></strong>
+                    <strong><%t PrivacyCenter.Performance 'Performance cookies' %></strong>
                     <div class="gdpr-widget__popup-categories-item-count">
 						<% loop $PerformanceCookies %>
 							$Text,
@@ -39,7 +39,7 @@
             </div>
             <div class="gdpr-widget__popup-categories-item">
                 <div class="gdpr-widget__popup-categories-item-name">
-                    <strong><%t PrivacyCenter.Functional 'Functional' %></strong>
+                    <strong><%t PrivacyCenter.Functional 'Functional cookies' %></strong>
                     <div class="gdpr-widget__popup-categories-item-count">
 						<% loop $FunctionalCookies %>
 							$Text,
@@ -55,7 +55,7 @@
             </div>
             <div class="gdpr-widget__popup-categories-item">
                 <div class="gdpr-widget__popup-categories-item-name">
-                    <strong><%t PrivacyCenter.Targeting 'Targeting' %></strong>
+                    <strong><%t PrivacyCenter.Targeting 'Targeting cookies' %></strong>
                     <div class="gdpr-widget__popup-categories-item-count">
 						<% loop $TargetingCookies %>
 							$Text,
@@ -81,7 +81,7 @@
         <div class="gdpr-widget__notice-wrapper">
             <div class="gdpr-widget__notice-content">
                 <div class="text"><%t PrivacyCenter.CookieMessage 'By using this website you accept the use of cookies. <span class="gdpr-show" onclick="showPopup()">Set preferences</span> or <span class="gdpr-close" onclick="savePreferences()">close this message</span>' %> </div>
-                <i class="fa fa-times close"  onclick="savePreferences()"></i>
+                <img src="/silverstripe-gdpr-cookies/img/close.svg" class=" close"  onclick="savePreferences()">
             </div>
         </div>
     </div>
