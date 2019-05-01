@@ -43,6 +43,16 @@ function closeNotice() {
 }
 
 function showNotice() {
+    if (getCookie('performanceCookies') !== 'pending') {
+        document.getElementById('gdpr-performance').checked = (getCookie('performanceCookies') === 'true');
+        document.getElementById('gdpr-functional').checked = (getCookie('functionalCookies') === 'true');
+        document.getElementById('gdpr-targeting').checked = (getCookie('targetingCookies') === 'true');
+    } else {
+        document.getElementById('gdpr-performance').checked = true;
+        document.getElementById('gdpr-functional').checked = true;
+        document.getElementById('gdpr-targeting').checked = true;
+    }
+
     document.getElementById('gdpr-widget__popup-notice').style.display = 'block';
 }
 
