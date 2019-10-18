@@ -145,6 +145,10 @@ class GdprCookies extends DataExtension
         $config = Config::inst();
         $googleTagID = $config->get('PrivacyCenter', 'TagID');
 
+        if(!$googleTagID){
+            return;
+        }
+
         // Inject GTM script
         Requirements::insertHeadTags("<!-- Google Tag Manager -->
             <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
