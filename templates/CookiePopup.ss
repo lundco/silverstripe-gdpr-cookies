@@ -81,7 +81,7 @@
         <div class="gdpr-widget__notice-wrapper">
             <div class="gdpr-widget__notice-content">
                 <div class="text"><%t PrivacyCenter.CookieMessage 'By using this website you accept the use of cookies. <span class="gdpr-show" onclick="showPopup()">Set preferences</span> or <span class="gdpr-close" onclick="savePreferences()">close this message</span>' %> </div>
-                <img src="/resources/vendor/lundco/silverstripe-gdpr-cookies/img/close.svg" class=" close"  onclick="savePreferences()">
+                <img src="$resourceURL('vendor/lundco/silverstripe-gdpr-cookies/img/close.svg')" class=" close"  onclick="savePreferences()">
             </div>
         </div>
     </div>
